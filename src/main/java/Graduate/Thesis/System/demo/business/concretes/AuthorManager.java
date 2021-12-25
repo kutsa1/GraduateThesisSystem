@@ -2,10 +2,7 @@ package Graduate.Thesis.System.demo.business.concretes;
 
 import Graduate.Thesis.System.demo.business.abstracts.IAuthorService;
 import Graduate.Thesis.System.demo.business.tools.Messages;
-import Graduate.Thesis.System.demo.core.utilities.results.DataResult;
-import Graduate.Thesis.System.demo.core.utilities.results.IResult;
-import Graduate.Thesis.System.demo.core.utilities.results.SuccesDataResult;
-import Graduate.Thesis.System.demo.core.utilities.results.SuccesResult;
+import Graduate.Thesis.System.demo.core.utilities.results.*;
 import Graduate.Thesis.System.demo.entitites.concretes.Author;
 import Graduate.Thesis.System.demo.repo.abstracts.IAuthorDao;
 import lombok.RequiredArgsConstructor;
@@ -46,4 +43,18 @@ public class AuthorManager implements IAuthorService {
     public DataResult<Author> getById(Integer id) {
         return new SuccesDataResult<>(iAuthorDao.getById(id), Messages.authorGetById);
     }
+
+    @Override
+    public DataResult<Author> findByName(String authorName) {
+        return new SuccesDataResult<>(iAuthorDao.findByName(authorName));
+    }
+
+    @Override
+    public IResult existByAuthorId(int authorId) {
+        if (iAuthorDao.existsById(authorId))
+            return new SuccesResult(Messages.authorFound);
+        return new ErrorResult(Messages.authorNotFound);
+
+    }
+
 }

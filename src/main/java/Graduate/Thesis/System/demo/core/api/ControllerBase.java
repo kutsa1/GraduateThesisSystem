@@ -1,7 +1,7 @@
 package Graduate.Thesis.System.demo.core.api;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
-import Graduate.Thesis.System.demo.core.utilities.bussines.IServiceBase;
+import Graduate.Thesis.System.demo.core.utilities.business.IServiceBase;
 import Graduate.Thesis.System.demo.core.utilities.results.ErrorResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package Graduate.Thesis.System.demo.core.utilities.bussines;
+package Graduate.Thesis.System.demo.core.utilities.business;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
 import Graduate.Thesis.System.demo.core.utilities.results.DataResult;
