@@ -38,7 +38,9 @@ public class Messages {
     public static String thesisGetById = "Thesis is listed by id";
     public static String univercityListed = "Univercities are listed ";
     public static String univercityAdd = "Univercity is added ";
-    public static String univercityUpdate = "Univercity is updated";
-    public static String univercityDelete = "Univercity is deleted";
-    public static String univercityGetById = "Univercity is listed by id";
+    public static String univercityUpdate = "Univercity is updated ";
+    public static String univercityDelete = "Univercity is deleted ";
+    public static String univercityGetById = "Univercity is listed by id ";
+    public static String authorFound = "There is a author who has this id ";
+    public static String authorNotFound = "There is not author who has this id ";
 }
