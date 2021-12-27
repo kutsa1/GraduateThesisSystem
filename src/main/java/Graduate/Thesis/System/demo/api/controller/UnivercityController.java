@@ -16,4 +16,5 @@ public class UnivercityController extends ControllerBase<University, IUnivercity
         super(iUnivercityService);
         this.iUnivercityService = iUnivercityService;
     }
+
 }

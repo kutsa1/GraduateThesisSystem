@@ -1,6 +1,7 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,7 +28,11 @@ public class Institute implements IEntity {
     @NotNull
     String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "institute")
     List<Thesis> theses;
+
+    @ManyToOne
+    @JsonIgnore
+    University university;
 
 }

@@ -22,7 +22,7 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
     }
 
     @GetMapping("/getbylanguage")
-    ResponseEntity<?> getByLanguage(@RequestParam String name){
+    ResponseEntity<?> getByLanguage(@RequestParam String name) {
         var result = iThesisService.getByLanguage(name);
         if (result.isSuccess())
             return new ResponseEntity(result, HttpStatus.OK);
@@ -30,8 +30,8 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
     }
 
     @PostMapping("/addlanguagetothesis")
-    ResponseEntity<?> addLanguageToThesis(@RequestParam int languageId, int thesisId){
-        var result = iThesisService.addLanguageToThesis(languageId,thesisId);
+    ResponseEntity<?> addLanguageToThesis(@RequestParam int languageId, int thesisId) {
+        var result = iThesisService.addLanguageToThesis(languageId, thesisId);
         if (result.isSuccess())
             return new ResponseEntity(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
@@ -46,27 +46,78 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
     }
 
     @GetMapping("/getbykeyword")
-    ResponseEntity<?> getByKeyword(@RequestParam String name){
+    ResponseEntity<?> getByKeyword(@RequestParam String name) {
         var result = iThesisService.getByKeyword(name);
         if (result.isSuccess())
-            return new ResponseEntity(result,HttpStatus.OK);
+            return new ResponseEntity(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getbytitle")
-    ResponseEntity<?> getByTitle(@RequestParam String title){
+    ResponseEntity<?> getByTitle(@RequestParam String title) {
         var result = iThesisService.getByTitle(title);
         if (result.isSuccess())
-            return new ResponseEntity(result,HttpStatus.OK);
+            return new ResponseEntity(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getbydeadline")
-    ResponseEntity<?> getByDeadline(@RequestParam LocalDate deadline){
+    ResponseEntity<?> getByDeadline(@RequestParam LocalDate deadline) {
         var result = iThesisService.getByDeadlineLike(deadline);
         if (result.isSuccess())
             return new ResponseEntity(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+
+    @GetMapping("/getbyuniversityid")
+    ResponseEntity<?> getThesesByUniId(@RequestParam int universityId) {
+        var result = iThesisService.getThesesByUniId(universityId);
+        if (result.isSuccess())
+            return new ResponseEntity(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbyuniversityname")
+    ResponseEntity<?> getThesesByUniName(@RequestParam String universityName) {
+        var result = iThesisService.getThesesByUniName(universityName);
+        if (result.isSuccess())
+            return new ResponseEntity(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbyinstituteid")
+    ResponseEntity<?> getThesesByInstituteId(@RequestParam int instituteId) {
+        var result = iThesisService.getThesesByInstituteId(instituteId);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+
+    }
+
+    @GetMapping("/getbyinstitutename")
+    ResponseEntity<?> getThesesByInstituteName(@RequestParam String instituteName){
+        var result = iThesisService.getThesesByInstituteName(instituteName);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbyauthorid")
+    ResponseEntity<?> getThesesByAuthorId(@RequestParam int authorId) {
+        var result = iThesisService.getThesesByAuthorId(authorId);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/getbyauthorname")
+    ResponseEntity<?> getThesesByAuthorName(@RequestParam String authorName) {
+        var result = iThesisService.getThesesByAuthorName(authorName);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+
     }
 
 

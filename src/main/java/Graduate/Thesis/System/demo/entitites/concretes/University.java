@@ -1,6 +1,7 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-
 public class University implements IEntity {
 
     @Id
@@ -28,10 +28,16 @@ public class University implements IEntity {
     @NotBlank
     String name;
 
-    @OneToMany
+    @OneToMany(mappedBy = "university")
+    @JsonIgnore
     List<Institute> institutes;
 
-    @OneToMany
+
+    @OneToMany(mappedBy = "university")
     List<Thesis> theses;
+
+    @ManyToOne
+    @JsonIgnore
+    Institute institute;
 
 }

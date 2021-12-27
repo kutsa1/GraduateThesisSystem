@@ -2,6 +2,7 @@ package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,9 +32,11 @@ public class Thesis implements IEntity {
     Language language;
 
     @OneToMany()
+    @JsonIgnore
     List<SubjectTopic> subjectTopics;
 
     @OneToMany()
+    @JsonIgnore
     List<Keyword> keywords;
 
     int thesisNo;
@@ -49,7 +52,19 @@ public class Thesis implements IEntity {
 
     int numberOfPages;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate deadline;
+
+    @ManyToOne
+    @JsonIgnoreProperties("theses")
+    University university;
+
+    @ManyToOne
+    @JsonIgnoreProperties("theses")
+    Institute institute;
+
+    @ManyToOne
+    @JsonIgnoreProperties("theses")
+    Author author;
 
 }

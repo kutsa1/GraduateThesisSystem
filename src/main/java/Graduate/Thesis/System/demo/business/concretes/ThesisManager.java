@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -92,6 +91,36 @@ public class ThesisManager implements IThesisService {
     public DataResult<List<Thesis>> getByDeadlineLike(LocalDate deadline) {
         var result = iThesisDao.getByDeadline(deadline);
         return new SuccesDataResult<>(result, Messages.thesisByDeadline);
+    }
+
+    @Override
+    public DataResult<List<Thesis>> getThesesByUniId(int universityId) {
+        return new SuccesDataResult<>(iThesisDao.getByUniversity_Id(universityId));
+    }
+
+    @Override
+    public DataResult<List<Thesis>> getThesesByUniName(String universityName) {
+        return new SuccesDataResult<>(iThesisDao.getByUniversity_Name(universityName));
+    }
+
+    @Override
+    public DataResult<List<Thesis>> getThesesByInstituteId(int instituteId) {
+        return new SuccesDataResult<>(iThesisDao.getThesisByInstitute_Id(instituteId));
+    }
+
+    @Override
+    public DataResult<List<Thesis>> getThesesByInstituteName(String instituteName) {
+        return new SuccesDataResult<>(iThesisDao.getThesisByInstitute_Name(instituteName));
+    }
+
+    @Override
+    public DataResult<List<Thesis>> getThesesByAuthorId(int authorId) {
+        return new SuccesDataResult<>(iThesisDao.getByAuthor_Id(authorId));
+    }
+
+    @Override
+    public DataResult<List<Thesis>> getThesesByAuthorName(String authorName) {
+        return new SuccesDataResult<>(iThesisDao.getByAuthor_Name(authorName));
     }
 
 }

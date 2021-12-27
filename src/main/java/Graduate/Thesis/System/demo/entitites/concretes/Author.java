@@ -31,7 +31,9 @@ public class Author implements IEntity {
     @NotNull
     String lastName;
 
-    @OneToMany
+    @OneToMany(mappedBy = "author")
     List<Thesis> theses;
+
+
 
 }
