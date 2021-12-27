@@ -46,4 +46,14 @@ public class InstituteManager implements IInstituteService {
     public DataResult<Institute> getById(Integer id) {
         return new SuccesDataResult<>(iInstituteDao.getById(id), Messages.instituteGetById);
     }
+
+    @Override
+    public DataResult<List<Institute>> getByUniversityId(int universityId) {
+        return new SuccesDataResult<>(iInstituteDao.getByUniversity_Id(universityId));
+    }
+
+    @Override
+    public DataResult<List<Institute>> getByUniversityName(String universityName) {
+        return new SuccesDataResult<>(iInstituteDao.getInstituteByUniversity_Name(universityName));
+    }
 }

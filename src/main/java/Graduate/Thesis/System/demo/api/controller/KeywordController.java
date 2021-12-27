@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/keywords")
 public class KeywordController extends ControllerBase<Keyword, IKeywordService> {
     private final IKeywordService iKeywordService;
+
     public KeywordController(IKeywordService iKeywordService) {
         super(iKeywordService);
         this.iKeywordService=iKeywordService;
