@@ -1,7 +1,10 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,6 +14,9 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "institutes")
+@AllArgsConstructor
+@NoArgsConstructor
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Institute implements IEntity {
 
     @Id

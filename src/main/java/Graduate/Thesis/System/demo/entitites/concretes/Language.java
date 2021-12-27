@@ -1,6 +1,7 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,10 +12,12 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
-@Table(name = "languageoftheses")
+@Table(name = "languages")
 @NoArgsConstructor
 @AllArgsConstructor
-public class LanguageOfThesis implements IEntity {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
+public class Language implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,6 +25,6 @@ public class LanguageOfThesis implements IEntity {
 
     @NotBlank
     @NotNull
-    String nameOfLanguage;
+    String name;
 
 }

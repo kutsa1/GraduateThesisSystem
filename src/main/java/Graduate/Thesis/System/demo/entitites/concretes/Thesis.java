@@ -1,11 +1,16 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +19,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "theses")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
 public class Thesis implements IEntity {
 
     @Id
@@ -21,18 +28,20 @@ public class Thesis implements IEntity {
     int id;
 
     @OneToOne
-    LanguageOfThesis languageOfThesis;
+    Language language;
 
     @OneToMany()
     List<SubjectTopic> subjectTopics;
 
     @OneToMany()
     List<Keyword> keywords;
+
     int thesisNo;
 
     String title;
 
     String summary;
+
 
     Date year;
 
@@ -40,6 +49,7 @@ public class Thesis implements IEntity {
 
     int numberOfPages;
 
-    Date deadline;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    LocalDate deadline;
 
 }

@@ -1,6 +1,7 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,12 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "univercities")
+@Table(name = "universities")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Univercity implements IEntity {
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+
+public class University implements IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

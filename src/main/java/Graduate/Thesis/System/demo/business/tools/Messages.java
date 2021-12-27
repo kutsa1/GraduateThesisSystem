@@ -43,4 +43,8 @@ public class Messages {
     public static String univercityGetById = "Univercity is listed by id ";
     public static String authorFound = "There is a author who has this id ";
     public static String authorNotFound = "There is not author who has this id ";
+    public static String thesisByLanguage = "Thesis is listed by language ";
+    public static String thesisByKeyword = "Thesis is listed by keyword ";
+    public static String thesisByTitle = "Thesis is listed by title";
+    public static String thesisByDeadline = "Thesis is listed by deadline";
 }
