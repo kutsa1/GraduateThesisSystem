@@ -37,6 +37,14 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
+    @PostMapping("/addcounselortothesis")
+    ResponseEntity<?> addCounselorsToThesis(@RequestParam int counselorId, int thesisId){
+        var result = iThesisService.addCounselorToThesis(counselorId,thesisId);
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
     @GetMapping("/getbysubject")
     ResponseEntity<?> getBySubject(@RequestParam String name) {
         var result = iThesisService.getBySubject(name);
@@ -119,6 +127,17 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
 
     }
+
+    @GetMapping("/getthesisdetaildto")
+    ResponseEntity<?> getThesesDetailDto() {
+        var result = iThesisService.getThesisDetailDto();
+        if (result.isSuccess())
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
+
+    }
+
+
 
 
 

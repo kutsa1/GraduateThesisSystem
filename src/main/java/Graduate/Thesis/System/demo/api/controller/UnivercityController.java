@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("api/univercities")
+@RequestMapping("api/universities")
+
 public class UnivercityController extends ControllerBase<University, IUnivercityService> {
     private final IUnivercityService iUnivercityService;
 

@@ -1,26 +1,30 @@
 package Graduate.Thesis.System.demo.business.concretes;
 
+import Graduate.Thesis.System.demo.business.abstracts.ICounselorService;
 import Graduate.Thesis.System.demo.business.abstracts.ILanguageService;
 import Graduate.Thesis.System.demo.business.abstracts.IThesisService;
 import Graduate.Thesis.System.demo.business.tools.Messages;
-import Graduate.Thesis.System.demo.core.utilities.results.DataResult;
-import Graduate.Thesis.System.demo.core.utilities.results.IResult;
-import Graduate.Thesis.System.demo.core.utilities.results.SuccesDataResult;
-import Graduate.Thesis.System.demo.core.utilities.results.SuccesResult;
+import Graduate.Thesis.System.demo.core.utilities.business.BusinessRule;
+import Graduate.Thesis.System.demo.core.utilities.results.*;
+import Graduate.Thesis.System.demo.entitites.concretes.Counselor;
 import Graduate.Thesis.System.demo.entitites.concretes.Language;
 import Graduate.Thesis.System.demo.entitites.concretes.Thesis;
+import Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto;
 import Graduate.Thesis.System.demo.repo.abstracts.IThesisDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 public class ThesisManager implements IThesisService {
     private final IThesisDao iThesisDao;
     private final ILanguageService iLanguageService;
+    private final ICounselorService iCounselorService;
 
 
     @Override
@@ -31,7 +35,8 @@ public class ThesisManager implements IThesisService {
     @Override
     public IResult add(Thesis thesis) {
         iThesisDao.save(thesis);
-        return new SuccesResult(Messages.thesisAdd);
+        return new SuccesResult(Messages.counselorAdd);
+
     }
 
     @Override
@@ -70,6 +75,23 @@ public class ThesisManager implements IThesisService {
     }
 
     @Override
+    public IResult addCounselorToThesis(int counselorId, int thesisId) {
+
+        var result = BusinessRule.run(
+                getCountOfCounselor(thesisId)
+        );
+        if (result != null)
+            return result;
+
+        Thesis thesis = iThesisDao.getById(counselorId);
+        Counselor counselor = iCounselorService.getById(counselorId).getData();
+
+        thesis.getCounselors().add(counselor);
+        iThesisDao.save(thesis);
+        return new SuccesResult(Messages.counselorAdd);
+    }
+
+    @Override
     public DataResult<List<Thesis>> getBySubject(String name) {
         var result = iThesisDao.findBySubjectTopics_Name(name);
         return new SuccesDataResult<>(result, Messages.thesisByLanguage);
@@ -78,7 +100,7 @@ public class ThesisManager implements IThesisService {
     @Override
     public DataResult<List<Thesis>> getByKeyword(String name) {
         var result = iThesisDao.findByKeywords_Name(name);
-        return new SuccesDataResult<>(result,Messages.thesisByKeyword);
+        return new SuccesDataResult<>(result, Messages.thesisByKeyword);
     }
 
     @Override
@@ -121,6 +143,21 @@ public class ThesisManager implements IThesisService {
     @Override
     public DataResult<List<Thesis>> getThesesByAuthorName(String authorName) {
         return new SuccesDataResult<>(iThesisDao.getByAuthor_Name(authorName));
+    }
+
+    @Override
+    public DataResult<List<ThesisDetailDto>> getThesisDetailDto() {
+        return new SuccesDataResult<>(iThesisDao.getThesisDetailDto());
+    }
+
+
+    private IResult getCountOfCounselor(int thesisId) {
+        var result = iThesisDao.getById(thesisId);
+        if (result.getCounselors().size() >= 2) {
+            return new ErrorResult(Messages.counselorCountNotValid);
+        }
+        return new SuccesResult();
+
     }
 
 }

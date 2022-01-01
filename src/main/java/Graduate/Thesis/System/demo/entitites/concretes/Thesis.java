@@ -53,7 +53,7 @@ public class Thesis implements IEntity {
     int numberOfPages;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate deadline;
+    Date deadline;
 
     @ManyToOne
     @JsonIgnore
@@ -66,5 +66,8 @@ public class Thesis implements IEntity {
     @ManyToOne
     @JsonIgnore
     Author author;
+
+    @ManyToMany
+    List<Counselor> counselors;
 
 }

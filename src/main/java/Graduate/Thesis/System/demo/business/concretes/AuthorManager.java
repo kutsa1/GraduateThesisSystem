@@ -56,6 +56,5 @@ public class AuthorManager implements IAuthorService {
         return new ErrorResult(Messages.authorNotFound);
 
     }
-    //tezler dile göre gelecek
 
 }

@@ -5,6 +5,7 @@ import Graduate.Thesis.System.demo.core.utilities.results.DataResult;
 import Graduate.Thesis.System.demo.core.utilities.results.IResult;
 import Graduate.Thesis.System.demo.entitites.concretes.Author;
 import Graduate.Thesis.System.demo.entitites.concretes.Thesis;
+import Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto;
 
 import java.time.LocalDate;
 import java.util.Date;
@@ -15,6 +16,8 @@ public interface IThesisService extends IServiceBase<Thesis> {
     DataResult<List<Thesis>> getByLanguage(String name);
 
     IResult addLanguageToThesis(int languageId, int thesisId);
+
+    IResult addCounselorToThesis(int counselorId, int thesisId);
 
     DataResult<List<Thesis>> getBySubject(String name);
 
@@ -35,5 +38,8 @@ public interface IThesisService extends IServiceBase<Thesis> {
     DataResult<List<Thesis>> getThesesByAuthorId(int authorId);
 
     DataResult<List<Thesis>> getThesesByAuthorName(String authorName);
+
+    DataResult<List<ThesisDetailDto>> getThesisDetailDto();
+
 
 }

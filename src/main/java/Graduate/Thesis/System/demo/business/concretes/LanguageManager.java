@@ -11,10 +11,12 @@ import Graduate.Thesis.System.demo.repo.abstracts.ILanguageDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RequiredArgsConstructor
 @Service
+@Transactional
 public class LanguageManager implements ILanguageService {
     private final ILanguageDao iLanguageDao;
 

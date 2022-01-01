@@ -47,4 +47,5 @@ public class Messages {
     public static String thesisByKeyword = "Thesis is listed by keyword ";
     public static String thesisByTitle = "Thesis is listed by title";
     public static String thesisByDeadline = "Thesis is listed by deadline";
+    public static String counselorCountNotValid ="Counselor count should not bigger than 2";
 }
