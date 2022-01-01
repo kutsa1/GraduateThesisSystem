@@ -56,15 +56,15 @@ public class Thesis implements IEntity {
     LocalDate deadline;
 
     @ManyToOne
-    @JsonIgnoreProperties("theses")
+    @JsonIgnore
     University university;
 
     @ManyToOne
-    @JsonIgnoreProperties("theses")
+    @JsonIgnore
     Institute institute;
 
     @ManyToOne
-    @JsonIgnoreProperties("theses")
+    @JsonIgnore
     Author author;
 
 }
