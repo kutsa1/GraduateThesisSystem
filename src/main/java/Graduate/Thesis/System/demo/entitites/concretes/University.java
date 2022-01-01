@@ -32,7 +32,7 @@ public class University implements IEntity {
     @JsonIgnore
     List<Institute> institutes;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "university")
     List<Thesis> theses;
 

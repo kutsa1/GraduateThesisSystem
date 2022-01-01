@@ -28,6 +28,7 @@ public class Institute implements IEntity {
     @NotNull
     String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "institute")
     List<Thesis> theses;
 

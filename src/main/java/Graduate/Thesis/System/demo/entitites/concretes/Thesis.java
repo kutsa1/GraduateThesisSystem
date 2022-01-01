@@ -53,18 +53,21 @@ public class Thesis implements IEntity {
     int numberOfPages;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    LocalDate deadline;
+    Date deadline;
 
     @ManyToOne
-    @JsonIgnoreProperties("theses")
+    @JsonIgnore
     University university;
 
     @ManyToOne
-    @JsonIgnoreProperties("theses")
+    @JsonIgnore
     Institute institute;
 
     @ManyToOne
-    @JsonIgnoreProperties("theses")
+    @JsonIgnore
     Author author;
+
+    @ManyToMany
+    List<Counselor> counselors;
 
 }
