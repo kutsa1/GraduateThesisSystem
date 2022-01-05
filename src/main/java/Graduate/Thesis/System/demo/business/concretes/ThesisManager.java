@@ -41,7 +41,7 @@ public class ThesisManager implements IThesisService {
 
     @Override
     public IResult update(Thesis thesis) {
-        iThesisDao.save(thesis);
+        iThesisDao.saveAndFlush(thesis);
         return new SuccesResult(Messages.thesisUpdate);
     }
 

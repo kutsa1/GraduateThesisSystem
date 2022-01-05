@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -55,7 +54,8 @@ public class Thesis implements IEntity {
     @NotNull
     Author author;
 
-    @ManyToMany
+    @ManyToMany()
+    @NotNull
     List<Keyword> keywords;
 
     @ManyToMany()

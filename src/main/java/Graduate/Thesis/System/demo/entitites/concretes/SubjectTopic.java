@@ -29,7 +29,7 @@ public class SubjectTopic implements IEntity {
     @NotBlank
     String name;
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "subjectTopics")
     @JsonIgnore
     List<Thesis> theses;
 

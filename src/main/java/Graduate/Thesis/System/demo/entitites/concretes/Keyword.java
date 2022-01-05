@@ -26,7 +26,7 @@ public class Keyword implements IEntity {
 
     String name;
 
-    @ManyToMany
+    @ManyToMany (mappedBy = "keywords")
     @JsonIgnore
     List<Thesis>theses;
 
