@@ -3,12 +3,9 @@ package Graduate.Thesis.System.demo.business.abstracts;
 import Graduate.Thesis.System.demo.core.utilities.business.IServiceBase;
 import Graduate.Thesis.System.demo.core.utilities.results.DataResult;
 import Graduate.Thesis.System.demo.core.utilities.results.IResult;
-import Graduate.Thesis.System.demo.entitites.concretes.Author;
 import Graduate.Thesis.System.demo.entitites.concretes.Thesis;
 import Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto;
 
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 
@@ -25,7 +22,6 @@ public interface IThesisService extends IServiceBase<Thesis> {
 
     DataResult<List<Thesis>> getByTitle(String title);
 
-    DataResult<List<Thesis>> getByDeadlineLike(LocalDate deadline);
 
     DataResult<List<Thesis>> getThesesByUniId(int universityId);
 

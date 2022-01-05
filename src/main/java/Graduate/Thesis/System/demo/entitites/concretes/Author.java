@@ -32,7 +32,7 @@ public class Author implements IEntity {
     @NotNull
     String lastName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Thesis> theses;
 

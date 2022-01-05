@@ -1,12 +1,13 @@
 package Graduate.Thesis.System.demo.entitites.dtos;
 
-import Graduate.Thesis.System.demo.entitites.concretes.Keyword;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
+
 
 @Data
 @AllArgsConstructor
@@ -19,7 +20,6 @@ public class ThesisDetailDto {
     private String author;
     private int thesisNo;
     private String title;
-    private Date deadline;
-
-
+    private Date submissionDate;
+    private Date year;
 }

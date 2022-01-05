@@ -7,11 +7,14 @@ import Graduate.Thesis.System.demo.entitites.concretes.Author;
 import Graduate.Thesis.System.demo.repo.abstracts.IAuthorDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AuthorManager implements IAuthorService {
      private final IAuthorDao iAuthorDao;
 
