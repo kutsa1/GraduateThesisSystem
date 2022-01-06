@@ -28,16 +28,14 @@ public class University implements IEntity {
     @NotBlank
     String name;
 
-    @OneToMany(mappedBy = "university")
+    @OneToMany(mappedBy = "university",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Institute> institutes;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "university")
+    @OneToMany(mappedBy = "university",cascade =CascadeType.ALL)
     List<Thesis> theses;
 
-    @ManyToOne
-    @JsonIgnore
-    Institute institute;
+
 
 }

@@ -7,6 +7,7 @@ import Graduate.Thesis.System.demo.core.utilities.results.IResult;
 import Graduate.Thesis.System.demo.core.utilities.results.SuccesDataResult;
 import Graduate.Thesis.System.demo.core.utilities.results.SuccesResult;
 import Graduate.Thesis.System.demo.entitites.concretes.Counselor;
+import Graduate.Thesis.System.demo.entitites.dtos.CounselorDetailDto;
 import Graduate.Thesis.System.demo.repo.abstracts.ICounselorDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,10 @@ public class CounselorManager implements ICounselorService {
     @Override
     public DataResult<Counselor> getById(Integer id) {
         return new SuccesDataResult<>(iCounselorDao.getById(id), Messages.counselorGetById);
+    }
+
+    @Override
+    public DataResult<List<CounselorDetailDto>> getByTheses_id(int thesisId) {
+        return new SuccesDataResult<>(iCounselorDao.getByTheses_id(thesisId));
     }
 }

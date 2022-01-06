@@ -8,9 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 @RestController
 @RequestMapping("api/theses")
 public class ThesisController extends ControllerBase<Thesis, IThesisService> {
@@ -38,8 +35,8 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
     }
 
     @PostMapping("/addcounselortothesis")
-    ResponseEntity<?> addCounselorsToThesis(@RequestParam int counselorId, int thesisId){
-        var result = iThesisService.addCounselorToThesis(counselorId,thesisId);
+    ResponseEntity<?> addCounselorsToThesis(@RequestParam int counselorId, int thesisId) {
+        var result = iThesisService.addCounselorToThesis(counselorId, thesisId);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
@@ -64,14 +61,6 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
     @GetMapping("/getbytitle")
     ResponseEntity<?> getByTitle(@RequestParam String title) {
         var result = iThesisService.getByTitle(title);
-        if (result.isSuccess())
-            return new ResponseEntity(result, HttpStatus.OK);
-        return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @GetMapping("/getbydeadline")
-    ResponseEntity<?> getByDeadline(@RequestParam LocalDate deadline) {
-        var result = iThesisService.getByDeadlineLike(deadline);
         if (result.isSuccess())
             return new ResponseEntity(result, HttpStatus.OK);
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
@@ -104,7 +93,7 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
     }
 
     @GetMapping("/getbyinstitutename")
-    ResponseEntity<?> getThesesByInstituteName(@RequestParam String instituteName){
+    ResponseEntity<?> getThesesByInstituteName(@RequestParam String instituteName) {
         var result = iThesisService.getThesesByInstituteName(instituteName);
         if (result.isSuccess())
             return new ResponseEntity<>(result, HttpStatus.OK);
@@ -136,9 +125,6 @@ public class ThesisController extends ControllerBase<Thesis, IThesisService> {
         return new ResponseEntity<>(new ErrorResult(result.getMessage()), HttpStatus.BAD_REQUEST);
 
     }
-
-
-
 
 
 }

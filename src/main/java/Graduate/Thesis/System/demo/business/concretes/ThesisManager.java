@@ -13,9 +13,9 @@ import Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto;
 import Graduate.Thesis.System.demo.repo.abstracts.IThesisDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-import java.time.LocalDate;
+
 import java.util.List;
 
 @Transactional
@@ -35,13 +35,13 @@ public class ThesisManager implements IThesisService {
     @Override
     public IResult add(Thesis thesis) {
         iThesisDao.save(thesis);
-        return new SuccesResult(Messages.counselorAdd);
+        return new SuccesResult(Messages.thesisAdd);
 
     }
 
     @Override
     public IResult update(Thesis thesis) {
-        iThesisDao.save(thesis);
+        iThesisDao.saveAndFlush(thesis);
         return new SuccesResult(Messages.thesisUpdate);
     }
 
@@ -109,11 +109,6 @@ public class ThesisManager implements IThesisService {
         return new SuccesDataResult<>(result, Messages.thesisByTitle);
     }
 
-    @Override
-    public DataResult<List<Thesis>> getByDeadlineLike(LocalDate deadline) {
-        var result = iThesisDao.getByDeadline(deadline);
-        return new SuccesDataResult<>(result, Messages.thesisByDeadline);
-    }
 
     @Override
     public DataResult<List<Thesis>> getThesesByUniId(int universityId) {

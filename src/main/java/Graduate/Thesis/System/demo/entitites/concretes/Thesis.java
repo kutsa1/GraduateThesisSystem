@@ -1,17 +1,13 @@
 package Graduate.Thesis.System.demo.entitites.concretes;
 
 import Graduate.Thesis.System.demo.core.entities.IEntity;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -28,23 +24,11 @@ public class Thesis implements IEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    @OneToOne
-    Language language;
-
-    @OneToMany()
-    @JsonIgnore
-    List<SubjectTopic> subjectTopics;
-
-    @OneToMany()
-    @JsonIgnore
-    List<Keyword> keywords;
-
     int thesisNo;
 
     String title;
 
     String summary;
-
 
     Date year;
 
@@ -52,22 +36,34 @@ public class Thesis implements IEntity {
 
     int numberOfPages;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    Date deadline;
+    Date submissionDate;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne()
+    @NotNull
+    Language language;
+
+    @ManyToOne()
+    @NotNull
     University university;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne()
+    @NotNull
     Institute institute;
 
-    @ManyToOne
-    @JsonIgnore
+    @ManyToOne()
+    @NotNull
     Author author;
 
+    @ManyToMany()
+    @NotNull
+    List<Keyword> keywords;
+
+    @ManyToMany()
+    @NotNull
+    List<SubjectTopic> subjectTopics;
+
     @ManyToMany
+    @NotNull
     List<Counselor> counselors;
 
 }

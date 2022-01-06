@@ -29,7 +29,7 @@ public class Institute implements IEntity {
     String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "institute")
+    @OneToMany(mappedBy = "institute",cascade = CascadeType.ALL)
     List<Thesis> theses;
 
     @ManyToOne

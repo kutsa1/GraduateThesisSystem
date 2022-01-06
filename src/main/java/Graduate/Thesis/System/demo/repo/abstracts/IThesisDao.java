@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +20,7 @@ public interface IThesisDao extends JpaRepository<Thesis, Integer> {
     List<Thesis> findByKeywords_Name(String name);
 
     List<Thesis> findByTitle(String title);
-
-    List<Thesis> getByDeadline(LocalDate deadline);
-
+    
     List<Thesis> getByUniversity_Id(int universityId);
 
     List<Thesis> getByUniversity_Name(String universityName);
@@ -34,10 +33,11 @@ public interface IThesisDao extends JpaRepository<Thesis, Integer> {
 
     List<Thesis> getByAuthor_Name(String authorName);
 
-    @Query(" select new Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto(t.id,l.name,u.name,i.name,a.name,t.thesisNo,t.title,t.deadline) from Thesis t join t.language l join t.university u join t.institute i join t.author a")
-    List<ThesisDetailDto> getThesisDetailDto();
 
-    @Query(value = "select c.name,c.lastName,c.id from Thesis t inner join t.counselors c where t.id=: thesisId", nativeQuery = true)
-    List<Counselor> getCounselorsOfThesis(int thesisId);
+   @Query(" select new Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto(t.id,l.name,u.name,i.name,a.name,t.thesisNo,t.title,t.submissionDate,t.year) from Thesis t join t.language l join t.university u join t.institute i join t.author a")
+   List<ThesisDetailDto> getThesisDetailDto();
+
+//    @Query(value = "select c.name,c.lastName,c.id from Thesis t inner join t.counselors c where t.id=: thesisId", nativeQuery = true)
+//    List<Counselor> getCounselorsOfThesis(int thesisId);
 
 }

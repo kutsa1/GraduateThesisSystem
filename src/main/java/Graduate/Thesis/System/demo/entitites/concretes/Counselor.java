@@ -34,7 +34,7 @@ public class Counselor implements IEntity {
     String lastName;
 
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "counselors")
     @JsonIgnore
     List<Thesis> theses;
 
