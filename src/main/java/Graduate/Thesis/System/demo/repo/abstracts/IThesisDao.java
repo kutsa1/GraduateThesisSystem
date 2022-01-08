@@ -37,7 +37,4 @@ public interface IThesisDao extends JpaRepository<Thesis, Integer> {
    @Query(" select new Graduate.Thesis.System.demo.entitites.dtos.ThesisDetailDto(t.id,l.name,u.name,i.name,a.name,t.thesisNo,t.title,t.submissionDate,t.year) from Thesis t join t.language l join t.university u join t.institute i join t.author a")
    List<ThesisDetailDto> getThesisDetailDto();
 
-//    @Query(value = "select c.name,c.lastName,c.id from Thesis t inner join t.counselors c where t.id=: thesisId", nativeQuery = true)
-//    List<Counselor> getCounselorsOfThesis(int thesisId);
-
 }

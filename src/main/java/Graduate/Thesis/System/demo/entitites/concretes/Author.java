@@ -35,6 +35,4 @@ public class Author implements IEntity {
     @OneToMany(mappedBy = "author",cascade = CascadeType.ALL)
     @JsonIgnore
     List<Thesis> theses;
-
-
 }
